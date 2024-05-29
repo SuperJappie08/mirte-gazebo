@@ -18,13 +18,13 @@ public:
   map_encoder(ros::NodeHandle nh, std::string side, bool bidirectional,
               int ticks) {
 
-    pub_ = n_.advertise<mirte_msgs::Encoder>("/mirte/encoder/" + side, 10);
+    pub_ = n_.advertise<mirte_msgs::Encoder>("mirte/encoder/" + side, 10);
     pub_speed_ =
-        n_.advertise<mirte_msgs::Encoder>("/mirte/encoder_speed/" + side, 10);
+        n_.advertise<mirte_msgs::Encoder>("mirte/encoder_speed/" + side, 10);
 
     sub_ =
-        n_.subscribe("/mirte/joint_states", 10, &map_encoder::callback, this);
-    server_ = n_.advertiseService("/mirte/get_encoder_" + side,
+        n_.subscribe("mirte/joint_states", 10, &map_encoder::callback, this);
+    server_ = n_.advertiseService("mirte/get_encoder_" + side,
                                   &map_encoder::service_cb, this);
     timer_ = n_.createTimer(ros::Duration(0.1), &map_encoder::timer, this);
     this->joint_name = "joint_" + side + "_wheel";

@@ -94,11 +94,11 @@ public:
 
   pcl_rotate(ros::NodeHandle nh) {
     // Topic you publish to
-    pub_ = n_.advertise<sensor_msgs::PointCloud2>("/mirte/depth_cam/pointsRot",
+    pub_ = n_.advertise<sensor_msgs::PointCloud2>("mirte/depth_cam/pointsRot",
                                                   1000);
 
     // Topic you subscribe to
-    sub_ = n_.subscribe("/mirte/depth_cam/points", 1000, &pcl_rotate::callback,
+    sub_ = n_.subscribe("mirte/depth_cam/points", 1000, &pcl_rotate::callback,
                         this);
   }
 

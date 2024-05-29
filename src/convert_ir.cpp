@@ -14,15 +14,15 @@ class map_ir {
 public:
   map_ir(ros::NodeHandle nh, std::string side) {
 
-    pub_ = n_.advertise<mirte_msgs::Intensity>("/mirte/intensity/" + side, 10);
+    pub_ = n_.advertise<mirte_msgs::Intensity>("mirte/intensity/" + side, 10);
     pub_dig_ = n_.advertise<mirte_msgs::IntensityDigital>(
-        "/mirte/intensity/" + side + "_digital", 10);
-    sub_ = n_.subscribe("/mirte/camera_ir_" + side + "/image_raw", 10,
+        "mirte/intensity/" + side + "_digital", 10);
+    sub_ = n_.subscribe("mirte/camera_ir_" + side + "/image_raw", 10,
                         &map_ir::callback, this);
-    server_ = n_.advertiseService("/mirte/get_intensity_" + side,
+    server_ = n_.advertiseService("mirte/get_intensity_" + side,
                                   &map_ir::service_cb, this);
     server_dig_ =
-        n_.advertiseService("/mirte/get_intensity_" + side + "_digital",
+        n_.advertiseService("mirte/get_intensity_" + side + "_digital",
                             &map_ir::service_cb_dig, this);
   }
 

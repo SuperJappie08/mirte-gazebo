@@ -11,11 +11,11 @@ class map_sonar {
 public:
   map_sonar(ros::NodeHandle nh, std::string side) {
 
-    pub_ = n_.advertise<sensor_msgs::Range>("/mirte/distance/" + side, 10);
+    pub_ = n_.advertise<sensor_msgs::Range>("mirte/distance/" + side, 10);
 
     sub_ =
-        n_.subscribe("/mirte/scanSonar" + side, 10, &map_sonar::callback, this);
-    server_ = n_.advertiseService("/mirte/get_distance_" + side,
+        n_.subscribe("mirte/scanSonar" + side, 10, &map_sonar::callback, this);
+    server_ = n_.advertiseService("mirte/get_distance_" + side,
                                   &map_sonar::service_cb, this);
   }
 
